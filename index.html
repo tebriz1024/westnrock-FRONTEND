@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="West'n'Rock: vintage və stritvear seçkisi. Hər parça təkdir.">
+<title>West'n'Rock</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--card:#161617;--card2:#1d1d1f;--text:#f5f5f7;--sub:#d2d2d7;--muted:#86868b;--line:#2a2a2c;--blue:#2997ff;--out:#ff453a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.47 "Inter",-apple-system,system-ui,sans-serif;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+section{scroll-margin-top:60px}
+.wrap{max-width:1240px;margin:auto;padding:0 22px}
+h1,h2,h3{margin:0;letter-spacing:-.035em}
+
+/* nav */
+nav{position:sticky;top:0;z-index:30;background:#000000b8;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid #ffffff14;padding-top:env(safe-area-inset-top)}
+nav .wrap{height:48px;display:flex;align-items:center;justify-content:space-between}
+nav b{font-weight:600;font-size:15px;letter-spacing:-.02em}
+nav .links{display:flex;gap:22px}
+nav .links a{color:var(--sub);font-size:12px}
+nav .links a:hover{color:#fff;text-decoration:none}
+@media(max-width:480px){nav .links{gap:14px}}
+
+/* hero */
+.hero{text-align:center;padding:clamp(70px,13vw,150px) 22px clamp(60px,10vw,110px)}
+.hero h1{font-size:clamp(44px,10.5vw,112px);line-height:1;font-weight:700;letter-spacing:-.05em;background:linear-gradient(180deg,#fff 30%,#8e8e93);-webkit-background-clip:text;background-clip:text;color:transparent;animation:in .9s cubic-bezier(.2,.8,.2,1) both}
+.hero p{font-size:clamp(19px,2.6vw,28px);line-height:1.25;color:var(--sub);max-width:640px;margin:20px auto 0;font-weight:500;letter-spacing:-.02em;animation:in .9s .12s cubic-bezier(.2,.8,.2,1) both}
+.cta{display:flex;gap:22px;justify-content:center;align-items:center;margin-top:32px;flex-wrap:wrap;animation:in .9s .22s cubic-bezier(.2,.8,.2,1) both}
+.btn{display:inline-block;background:var(--text);color:#000;font-weight:500;font-size:17px;padding:12px 26px;border-radius:980px;border:0;transition:transform .2s,background .2s}
+.btn:hover{background:#fff;text-decoration:none;transform:scale(1.03)}
+.more{font-size:17px}
+.more::after{content:" ›"}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* collection */
+.head{text-align:center;padding:40px 22px 28px}
+.head h2{font-size:clamp(34px,6vw,56px);font-weight:700}
+.head p{color:var(--muted);font-size:clamp(17px,2vw,21px);margin:8px 0 0}
+.toolbar{display:flex;gap:14px;align-items:center;justify-content:space-between;padding-bottom:26px}
+.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -22px;padding:0 22px;flex:1;min-width:0}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:none;border:0;background:var(--card2);color:var(--sub);font-size:14px;font-weight:500;padding:9px 18px;border-radius:980px;transition:.2s}
+.filters button:hover{background:#2c2c2e}
+.filters button.active{background:var(--text);color:#000}
+.sort{flex:none;font:inherit;font-size:14px;font-weight:500;color:var(--sub);background-color:var(--card2);border:0;border-radius:980px;padding:9px 36px 9px 18px;appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#999 50%),linear-gradient(135deg,#999 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+@media(max-width:700px){.toolbar{flex-direction:column;align-items:stretch}.sort{width:100%;font-size:16px;padding:11px 36px 11px 18px}}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding-bottom:40px}
+@media(max-width:1020px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+.card{display:block;width:100%;text-align:left;border:0;padding:0;background:var(--card);border-radius:22px;overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:scale(1.02)}
+.thumb{aspect-ratio:4/5;position:relative;background:var(--card2);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.card.sold .thumb img{filter:grayscale(1) brightness(.45)}
+.tag{position:absolute;left:12px;top:12px;background:#fffffff0;color:#000;font-size:12px;font-weight:600;padding:4px 11px;border-radius:980px}
+.info{padding:14px 16px 18px}
+.info h3{font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-.02em}
+.info small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.info .price{font-size:15px;font-weight:500;margin-top:8px}
+@media(max-width:700px){.info{padding:12px 13px 15px}.info h3{font-size:14.5px}.card{border-radius:18px}}
+.empty{grid-column:1/-1;padding:56px 20px;text-align:center;background:var(--card);border-radius:22px;color:var(--muted)}
+
+/* about */
+.about{background:var(--card);margin-top:30px;padding:clamp(70px,10vw,130px) 0}
+.about h2{font-size:clamp(36px,7vw,80px);line-height:1.04;font-weight:700;max-width:900px}
+.about .lead{font-size:clamp(19px,2.4vw,28px);line-height:1.3;color:var(--sub);max-width:780px;margin:26px 0 0;font-weight:500;letter-spacing:-.02em}
+.about .lead em{font-style:normal;color:var(--text)}
+/* contact */
+.contact{text-align:center;padding:clamp(60px,9vw,110px) 22px;background:var(--card)}
+.contact h2{font-size:clamp(34px,6vw,64px);font-weight:700}
+.contact p{color:var(--sub);font-size:clamp(18px,2.2vw,24px);margin:12px 0 30px}
+footer{padding:26px 22px calc(26px + env(safe-area-inset-bottom));text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
+
+/* detail sheet */
+.overlay{position:fixed;inset:0;background:#000000b3;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.overlay.open{display:flex}
+.sheet{position:relative;background:var(--card2);width:100%;max-width:960px;max-height:92vh;max-height:92dvh;border-radius:26px 26px 0 0;overflow:hidden;display:flex;animation:up .35s cubic-bezier(.2,.8,.2,1)}
+.sheet .scroll{overflow-y:auto;width:100%;padding-bottom:env(safe-area-inset-bottom);overscroll-behavior:contain}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.imgcol img{width:100%;aspect-ratio:1/1;object-fit:cover;max-height:46vh}
+.body{padding:24px 24px 28px}
+.closeBtn{position:absolute;top:14px;right:14px;z-index:2;width:34px;height:34px;border-radius:50%;border:0;background:#3a3a3cd9;backdrop-filter:blur(10px);font-size:15px;line-height:1}
+.closeBtn:hover{background:#4a4a4d}
+.cat{font-size:13px;color:var(--muted)}
+.sheet h2{font-size:clamp(28px,4vw,40px);line-height:1.08;font-weight:700;margin:4px 0 8px}
+.sheet .price{font-size:22px;font-weight:500;margin-bottom:6px}
+.stok{font-size:14px;margin-bottom:14px;color:var(--sub)}
+.stok.out{color:var(--out)}
+.desc{color:var(--sub);font-size:16px;line-height:1.45;margin:0 0 22px}
+.lbl{font-size:14px;font-weight:600;margin-bottom:10px}
+.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.size-btn{background:#2c2c2e;border:2px solid transparent;min-width:52px;height:46px;border-radius:12px;font-weight:500;transition:.15s}
+.size-btn:hover:not(:disabled){background:#3a3a3c}
+.size-btn:disabled{opacity:.35}
+.size-btn.selected{background:#2c2c2e;border-color:var(--text)}
+.order-btn{width:100%;padding:15px;border:0;border-radius:14px;background:var(--text);color:#000;font-weight:600;font-size:17px;transition:.2s}
+.order-btn:hover:not(:disabled){background:#fff}
+.order-btn:disabled{background:#2c2c2e;color:#777}
+@media(min-width:780px){
+  .overlay{align-items:center;padding:24px}
+  .sheet{border-radius:28px}
+  .sheet .scroll{display:grid;grid-template-columns:1fr 1fr}
+  .imgcol img{height:100%;aspect-ratio:auto;max-height:none;min-height:520px}
+  .body{padding:48px 36px 36px;display:flex;flex-direction:column;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <b>West'n'Rock</b>
+    <div class="links">
+      <a href="#kolleksiya">Kolleksiya</a>
+      <a href="#haqqimizda">Haqqımızda</a>
+      <a href="#elaqe">Əlaqə</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>West'n'Rock.</h1>
+  <p>Vintage və stritvear seçkisi. Hər parça təkdir.</p>
+  <div class="cta">
+    <a class="btn" href="#kolleksiya">Kolleksiyaya bax</a>
+    <a class="more" href="#haqqimizda">Haqqımızda</a>
+  </div>
+</header>
+
+<section id="kolleksiya">
+  <div class="head">
+    <h2>Kolleksiya.</h2>
+    <p>Kateqoriya seç, qiymətə görə düz, bəyəndiyini götür.</p>
+  </div>
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <select class="sort" id="sirala" aria-label="Sırala">
+        <option value="yeni">Yeni əlavə olunanlar</option>
+        <option value="ucuz">Qiymət: ucuzdan bahaya</option>
+        <option value="bahali">Qiymət: bahadan ucuza</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"><div class="empty">Yüklənir…</div></div>
+  </div>
+</section>
+
+<section class="about" id="haqqimizda">
+  <div class="wrap">
+    <h2>Çox yox, düzgün parça.</h2>
+    <p class="lead">West'n'Rock bu sahədə təzə başlayan bir komandadır. Təcrübəmiz azdır, amma standartımız aşağı deyil: <em>hər parçanı satışa qoymazdan əvvəl özümüz yoxlayırıq</em>. Xoşumuza gəlməyən parça kolleksiyaya düşmür.</p>
+  </div>
+</section>
+
+<section class="contact" id="elaqe">
+  <h2>Sualın var?</h2>
+  <p>Yaz, ən qısa zamanda cavab verək.</p>
+  <a class="btn" id="waBtn" href="#" target="_blank" rel="noopener">WhatsApp-da yaz</a>
+</section>
+
+<footer>© 2026 West'n'Rock. Made by Tebriz.H</footer>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Məhsul detalları">
+  <div class="sheet">
+    <button class="closeBtn" onclick="detalBagla()" aria-label="Bağla">✕</button>
+    <div class="scroll">
+      <div class="imgcol"><img id="sheetImg" src="" alt=""></div>
+      <div class="body">
+        <div class="cat" id="sheetKat"></div>
+        <h2 id="sheetAd"></h2>
+        <div class="price" id="sheetQiymet"></div>
+        <div class="stok" id="sheetStok"></div>
+        <p class="desc" id="sheetAciqlama"></p>
+        <div class="lbl">Ölçü seç</div>
+        <div class="sizes" id="sheetOlculer"></div>
+        <button class="order-btn" id="sheetSiparisBtn">Sifariş ver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = "https://westnrock-backend.onrender.com";
+const WHATSAPP_NOMRE = "994555797922";
+let hamisi = [], aktivFiltr = "Hamısı", siralama = "yeni", secilenOlcu = null;
+
+const AD = {Jackets:"Gödəkçə", Jeans:"Cins", Hoodies:"Hudi", "T-Shirts":"Tişört", Shoes:"Ayaqqabı", Accessories:"Aksesuar"};
+const gosterAd = k => AD[k] || k;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $ = id => document.getElementById(id);
+
+$("waBtn").href = `https://wa.me/${WHATSAPP_NOMRE}?text=${encodeURIComponent("Salam! West'n'Rock saytından yazıram.")}`;
+
+async function yukle(){
+  try{
+    const res = await fetch(API + "/");
+    hamisi = await res.json();
+    if(!Array.isArray(hamisi)) throw new Error();
+    if(aktivFiltr !== "Hamısı" && !hamisi.some(m => m[3] === aktivFiltr)) aktivFiltr = "Hamısı";
+    filtrleriQur(); ciz();
+  }catch(e){
+    $("grid").innerHTML = '<div class="empty">Backend-ə qoşulmaq olmadı. Bir az sonra yenidən yoxla.</div>';
+  }
+}
+
+function filtrleriQur(){
+  const movcud = new Set(hamisi.map(m => m[3]));
+  const sira = [...Object.keys(AD).filter(k => movcud.has(k)), ...[...movcud].filter(k => !(k in AD))];
+  const list = ["Hamısı", ...sira];
+  $("filters").innerHTML = list.map((k,i) => `<button data-i="${i}" class="${k===aktivFiltr?'active':''}">${k==="Hamısı"?"Hamısı":esc(gosterAd(k))}</button>`).join("");
+  $("filters").querySelectorAll("button").forEach(b => b.onclick = () => { aktivFiltr = list[b.dataset.i]; filtrleriQur(); ciz(); });
+}
+$("sirala").onchange = e => { siralama = e.target.value; ciz(); };
+
+function ciz(){
+  const grid = $("grid");
+  let list = aktivFiltr === "Hamısı" ? [...hamisi] : hamisi.filter(m => m[3] === aktivFiltr);
+  if(siralama === "ucuz") list.sort((x,y) => Number(x[2]) - Number(y[2]));
+  else if(siralama === "bahali") list.sort((x,y) => Number(y[2]) - Number(x[2]));
+  else list.sort((x,y) => y[0] - x[0]);
+  if(!list.length){ grid.innerHTML = '<div class="empty">Bu kateqoriyada məhsul yoxdur.</div>'; return; }
+  grid.innerHTML = list.map(m => {
+    const [id, ad, qiymet, kat, , , sekil, eded] = m;
+    return `<button class="card ${eded===0?'sold':''}" data-id="${id}">
+      <div class="thumb">${eded===0?'<span class="tag">Bitib</span>':''}<img src="${esc(sekil)}" alt="${esc(ad)}" loading="lazy"></div>
+      <div class="info"><h3>${esc(ad)}</h3><small>${esc(gosterAd(kat))}</small><div class="price">${esc(qiymet)} AZN</div></div>
+    </button>`;
+  }).join("");
+  grid.querySelectorAll(".card").forEach(c => c.onclick = () => detalAc(hamisi.find(m => m[0] == c.dataset.id)));
+}
+
+function detalAc(m){
+  const [id, ad, qiymet, kat, olculer, aciqlama, sekil, eded] = m;
+  secilenOlcu = null;
+  $("sheetImg").src = sekil; $("sheetImg").alt = ad;
+  $("sheetKat").textContent = gosterAd(kat);
+  $("sheetAd").textContent = ad;
+  $("sheetQiymet").textContent = qiymet + " AZN";
+  $("sheetAciqlama").textContent = aciqlama || "";
+  $("sheetAciqlama").style.display = aciqlama ? "block" : "none";
+  const bitib = eded === 0;
+  $("sheetStok").textContent = bitib ? "Stokda yoxdur" : `${eded} ədəd stokda var`;
+  $("sheetStok").className = "stok " + (bitib ? "out" : "");
+  const sizes = $("sheetOlculer");
+  sizes.innerHTML = olculer.split(",").map(o => o.trim()).filter(Boolean).map(o => `<button class="size-btn" ${bitib?'disabled':''}>${esc(o)}</button>`).join("");
+  sizes.querySelectorAll(".size-btn").forEach(b => b.onclick = () => {
+    secilenOlcu = b.textContent;
+    sizes.querySelectorAll(".size-btn").forEach(x => x.classList.remove("selected"));
+    b.classList.add("selected");
+  });
+  const btn = $("sheetSiparisBtn");
+  btn.disabled = bitib;
+  btn.textContent = bitib ? "Stokda yoxdur" : "Sifariş ver";
+  btn.onclick = () => siparisVer(id, ad, qiymet);
+  $("overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function detalBagla(){ $("overlay").classList.remove("open"); document.body.style.overflow = ""; }
+$("overlay").addEventListener("click", e => { if(e.target.id === "overlay") detalBagla(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") detalBagla(); });
+
+async function siparisVer(id, ad, qiymet){
+  if(!secilenOlcu){ alert("Zəhmət olmasa ölçü seçin"); return; }
+  try{
+    const res = await fetch(`${API}/sifaris/${id}`, {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ musteri:"Vebsayt müştərisi", telefon:"-", olcu: secilenOlcu, eded: 1 })
+    });
+    const data = await res.json();
+    if(!res.ok){ alert("Xəta: " + (data.detail || res.status)); return; }
+    const mesaj = encodeURIComponent(`Salam! "${ad}" (${secilenOlcu} ölçü, ${qiymet} AZN) sifariş etmək istəyirəm.`);
+    window.open(`https://wa.me/${WHATSAPP_NOMRE}?text=${mesaj}`, "_blank");
+    detalBagla(); yukle();
+  }catch(e){ alert("Xəta baş verdi, bir az sonra yenidən cəhd edin."); }
+}
+
+yukle();
+</script>
+</body>
+</html>
